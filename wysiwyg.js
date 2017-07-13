@@ -1,18 +1,30 @@
+//declared variables to hold variables
 console.log("greetings.")
-let input = document.getElementById("input");
+
+let input = document.getElementById("input");//sends information in
 let container = document.getElementById("container");
 let cards = document.getElementsByClassName("cards");
 let bio = "";
 let array = [];
 
+//defines the function setArray
 function setArr() {
+console.log("array", this.responseText);
+
+//set array to equal to parse json file 
 	array = JSON.parse (this.responseText)
+console.log("array", array)
+//called outputCards with array passed into it
 	outputCards(array);
 };
 
+//define outputCards function while expecting peopleArray to happen(from line array)
 function outputCards(peopleArray) {
+	
+	//for loop that iterates through the peopleArray 
 	for (i = 0; i < peopleArray.length; i++) {
-	console.log(peopleArray[i].title)
+	
+	//sets the container to display all the json info through concentration upon gtting the json file through the XHR
 	container.innerHTML +=`<div class="cards"> <person>
   		<header>${peopleArray[i].name} & ${peopleArray[i].title}</header>
   		<section><span class="bio">${peopleArray[i].bio}</span> & <img src ="${peopleArray[i].image}"> </img></section>
@@ -53,6 +65,8 @@ function activateBorderEvent(clickedCard){
 	activateKeyEvent(clickedCard)
 }
 function deathCard(){
+//defines function in death cards	
+	
 	console.log("cards", cards);
 	for (var i = 0; i < cards.length; i++) {
 		if (cards[i].classList.contains("selectedCard")){
@@ -73,9 +87,9 @@ function activateKeyEvent(clickedCard){
 	});
 }
 
+//defines function mirrorText and expects clickedCard to run (from, clickedCard)
 function mirrorText(clickedCard){
-	console.log("click", clickedCard);
-	if (clickedCard.classList.contains("selectedCard")){
+if (clickedCard.classList.contains("selectedCard")){
 	clickedCard.querySelector(".bio").innerHTML = input.value;
 	}
 	
